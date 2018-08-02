@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+   <!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="showvs" namespace="/" extends="struts-default">
+		<action name="Demo1Action" class="yp.itcast.b_showvs.Demo1Action" method="execute">
+			<result name="success" type="dispatcher">/showvs.jsp</result>
+		</action>
+		<action name="Demo2Action" class="yp.itcast.c_param.Demo2Action" method="execute">
+			<result name="success" type="dispatcher">/form.jsp</result>
+		</action>
+		<action name="Demo3Action" class="yp.itcast.d_config.Demo3Action" method="execute">
+			<result name="success" type="redirectAction">
+				<param name="actionName">Demo1Action</param>
+				<param name="namespace">/</param>
+				 <!-- 
+				 	如果添加的参数Struts“看不懂”，就会作为参数附加重定向的路径之后。
+				 	如果参数是动态的，可以使用${}包裹ognl表达式。动态取值
+				  -->
+				  <!-- 注意：这跟EL表达式没有关系，因为ognl表达式在配置文件中就是用￥符号来包裹的 
+					${name}:从栈中取name
+				 -->
+				<param name="name">${name}</param>
+			</result>
+		</action>
+	</package>
+</struts>
