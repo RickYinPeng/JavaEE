@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+   <!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="param" namespace="/" extends="struts-default">
+		<action name="Demo8Action" class="yp.itcast.c_param.Demo8Action" method="execute">
+			<result name="success" type="dispatcher">/from1.jsp</result>
+		</action>
+		<action name="Demo9Action" class="yp.itcast.c_param.Demo9Action" method="execute">
+			<result name="success" type="dispatcher">/from2.jsp</result>
+		</action>
+		<action name="Demo10Action" class="yp.itcast.c_param.Demo10Action" method="execute">
+			<result name="success" type="dispatcher">/from3.jsp</result>
+		</action>
+		<action name="Demo11Action" class="yp.itcast.c_param.Demo11Action" method="execute">
+			<result name="success" type="dispatcher">/from4.jsp</result>
+		</action>
+	</package>
+</struts>
