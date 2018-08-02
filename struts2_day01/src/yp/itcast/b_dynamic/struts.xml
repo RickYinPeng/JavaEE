@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+   <!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<!-- 第一种方法 -->
+	<!-- 配置动态方法调用是否开启常量 
+			默认是关闭的，需要开启
+	
+	<constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
+	<package name="dynamic" namespace="/dynamic" extends="struts-default">
+		
+		<action name="Demo1Action" class="yp.itcast.b_dynamic.Demo1Action">
+			<result name="success">/hello.jsp</result>
+		</action>
+	
+	
+	</package> -->
+	
+	<!-- 动态方法调用第二种方法：通配符
+			使用{1}	取出第一个*号匹配的内容
+	
+	 -->
+	<package name="dynamic" namespace="/dynamic" extends="struts-default">
+		
+		<action name="Demo1Action_*" class="yp.itcast.b_dynamic.Demo1Action" method="{1}">
+			<result name="add">/hello.jsp</result>
+			<result name="delete">/index.jsp</result>
+		</action>
+	
+	
+	</package> 
+
+
+</struts>
