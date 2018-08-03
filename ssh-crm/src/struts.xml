@@ -38,6 +38,17 @@
 		
 		<!-- 数据字典Action -->
 		<action name="BaseDictAction" class="baseDictAction" method="execute"></action>
+		
+		<!-- 联系人Action -->
+		<action name="LinkManAction_*" class="linkManAction" method="{1}">
+			<result name="toList" type="redirectAction" >
+				<param name="namespace">/</param>
+				<param name="actionName">LinkManAction_list</param>
+			</result>
+			<result name="error" >/jsp/error.jsp</result>
+			<result name="list" >/jsp/linkman/list.jsp</result>
+			<result name="edit" >/jsp/linkman/add.jsp</result>
+		</action>
 	</package>
 
 

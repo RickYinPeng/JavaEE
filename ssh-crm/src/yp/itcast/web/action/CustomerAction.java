@@ -51,9 +51,6 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		
 		return "list";
 	}
-	
-	
-	
 	public String add() throws Exception {
 	
 	if(photo!=null){	
@@ -84,10 +81,6 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		return "edit";
 	}
 	
-	
-	
-	
-
 	public File getPhoto() {
 		return photo;
 	}

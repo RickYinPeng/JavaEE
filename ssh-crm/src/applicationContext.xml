@@ -95,6 +95,9 @@
 	<bean name="baseDictAction" class="yp.itcast.web.action.BaseDictAction" scope="prototype" >
 		<property name="baseDictService" ref="baseDictService"></property>
 	</bean>
+	<bean name="linkManAction" class="yp.itcast.web.action.LinkManAction" scope="prototype" >
+		<property name="lms" ref="linkManService"></property>
+	</bean>
 	
 	
 	<!-- service配置 -->
@@ -106,6 +109,9 @@
 	</bean>
 	<bean name="baseDictService" class="yp.itcast.service.impl.BaseDictServiceImpl">
 		<property name="bdd" ref="baseDictDao"></property>
+	</bean>
+	<bean name="linkManService" class="yp.itcast.service.impl.LinkManServiceImpl">
+		<property name="lmd" ref="linkManDao"></property>
 	</bean>
 	
 	
@@ -119,6 +125,10 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	<bean name="baseDictDao" class="yp.itcast.dao.impl.BaseDictDaoImpl">
+		<!-- 注入sessionFactory -->
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean name="linkManDao" class="yp.itcast.dao.impl.LinkManDaoImpl">
 		<!-- 注入sessionFactory -->
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>

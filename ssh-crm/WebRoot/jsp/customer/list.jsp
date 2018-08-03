@@ -28,6 +28,22 @@
 		//2.提交表单
 			$('#pageForm').submit();
 	}
+	
+	function selectCustomer(cust_id,cust_name){
+		var win = window.opener;
+		//获得添加页面的document对象
+		var doc = win.document;
+		//获得隐藏域，和文本框，并赋值
+		alert(cust_id);
+		
+		doc.getElementById("cust_id").value=cust_id;
+		doc.getElementById("cust_name").value=cust_name;
+		
+		//关闭当前窗口
+		window.close();
+		
+	}
+	
 </SCRIPT>
 
 <META content="MSHTML 6.00.2900.3492" name=GENERATOR>
@@ -70,9 +86,13 @@
 										<FORM id="pageForm" name="customerForm"
 											action="${pageContext.request.contextPath }/CustomerAction_list"
 											method=post>
+											<!-- 隐藏域，当前页码 -->
 											<input type="hidden" name="currentPage" id="currentPageInput" value="<s:property value="#pageBean.currentPage"/>"/>
+											<!-- 隐藏域，每页显示条数 -->
 											<input type="hidden" name="pageSize" id="pageSizeInput" value="<s:property value="#pageBean.pageSize"/>" />
-									<!-- 隐藏域，当前页码 -->
+											<!-- 隐藏域，放置是否需要选择的标记参数 -->
+											<input type="hidden" name="select"  value="<s:property value="#parameters.select"/>" />
+									
 										<TABLE cellSpacing=0 cellPadding=2 border=0>
 											<TBODY>
 												<TR>
@@ -127,9 +147,15 @@
 															<s:property value="#cust.cust_mobile"/>
 														</TD>
 														<TD>
-														<a href="${pageContext.request.contextPath }/CustomerAction_toEdit?cust_id=<s:property value="#cust.cust_id"/>">修改</a>
-														&nbsp;&nbsp;
-														<a href="${pageContext.request.contextPath }/customerServlet?method=delete&custId=${customer.cust_id}">删除</a>
+
+														<s:if test="#parameters.select[0]=='true'" >
+															<input type="button" value="选择" onclick="selectCustomer(<s:property value="#cust.cust_id"/>,'<s:property value="#cust.cust_name"/>')"/>
+														</s:if>
+														<s:else>
+															<a href="${pageContext.request.contextPath }/CustomerAction_toEdit?cust_id=<s:property value="#cust.cust_id"/>">修改</a>
+															&nbsp;&nbsp;
+															<a href="${pageContext.request.contextPath }/customerServlet?method=delete&custId=${customer.cust_id}">删除</a>
+														</s:else>
 														</TD>
 													</TR>
 												
@@ -236,7 +262,7 @@
 				</TR>
 			</TBODY>
 		</TABLE>
-
+	<s:debug></s:debug>
 </BODY>
 </HTML>
 											
