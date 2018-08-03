@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="yp.itcast.domain">	
+	<class name="Customer" table="cst_customer">
+		<id name="cust_id" >
+			<generator class="native"></generator>
+		</id>
+		<property name="cust_name" ></property>
+<!-- 		<property name="cust_source" ></property>
+		<property name="cust_industry" ></property>
+		<property name="cust_level" ></property> -->
+		<property name="cust_linkman" ></property>		
+		<property name="cust_phone" ></property>
+		<property name="cust_mobile" ></property>
+		
+		<!-- 集合，一对多关系，在配置文件中配置 -->
+		<!-- 
+			name属性：集合属性名
+			column属性：外键列名
+			class属性：与我关联的对象的完整类名（因为写了package属性所以只需要写类名就行）		
+		 -->
+		 <!-- 
+		 	级联操作：cascade	
+		 		save-update:级联保存更新
+		 		delete:级联删除
+		 		all:save-update+delete
+		 	级联操作：简化操作.		目的：少些代码
+		  -->
+		  <!-- inverse（反转）属性：配置关系是否维护 
+		  			true:不维护关系（反转维护关系）
+		  			false（默认值）:customer维护
+		  		原则：无论怎么放弃，总有一方必须要维护关系
+		  		一对多关系中：一的一方放弃，也只能是一的一方放弃，多的一方不能放弃（因为外键属于多的一方的字段）
+		  -->
+		<set name="linkMens">
+			<key column="lkm_cust_id"></key>
+			<one-to-many class="LinkMan"/>
+		</set>
+		
+		<!-- 多对一 -->
+		<many-to-one name="cust_source" column="cust_source" class="BaseDict"></many-to-one>
+		<many-to-one name="cust_industry" column="cust_industry" class="BaseDict"></many-to-one>
+		<many-to-one name="cust_level" column="cust_level" class="BaseDict"></many-to-one>
+	</class>
+</hibernate-mapping>

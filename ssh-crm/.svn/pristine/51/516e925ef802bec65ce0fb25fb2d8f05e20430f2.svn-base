@@ -1,0 +1,10 @@
+package yp.itcast.test;
+
+public class SVNTest {
+		
+	private String name;
+	
+	private String address;
+	
+	private String gaga;
+}

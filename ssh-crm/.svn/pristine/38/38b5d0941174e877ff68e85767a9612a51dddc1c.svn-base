@@ -1,0 +1,7 @@
+package yp.itcast.test;
+
+public class SVNTest {
+		
+	private String name;
+	
+}
