@@ -22,6 +22,11 @@ public class User {
 	private String user_password;
 	private Character user_state;
 	
+	//表达客户与拜访记录的一对多
+	private Set<SaleVisit> saleVisits = new HashSet<SaleVisit>();
+	
+	
+	
 	public Long getUser_id() {
 		return user_id;
 	}
@@ -61,10 +66,11 @@ public class User {
 	public void setUser_state(Character user_state) {
 		this.user_state = user_state;
 	}
-
-	@Override
-	public String toString() {
-		return "User [user_id=" + user_id + ", user_code=" + user_code + ", user_name=" + user_name + ", user_password="
-				+ user_password + ", user_state=" + user_state + "]";
+	public Set<SaleVisit> getSaleVisits() {
+		return saleVisits;
 	}
+	public void setSaleVisits(Set<SaleVisit> saleVisits) {
+		this.saleVisits = saleVisits;
+	}
+
 }

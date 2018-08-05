@@ -37,10 +37,12 @@ CREATE TABLE `cst_customer` (
 	private BaseDict cust_industry;//客户行业
 	private BaseDict cust_level;//客户级别
 	
-	
+	//表达客户与拜访记录的一对多
+	private Set<SaleVisit> saleVisits = new HashSet<SaleVisit>();
 	
 	//使用set集合，表达一对多的关系
 	private Set<LinkMan> linkMens = new HashSet<LinkMan>();
+	
 	public Long getCust_id() {
 		return cust_id;
 	}
@@ -113,11 +115,13 @@ CREATE TABLE `cst_customer` (
 	public void setCust_level(BaseDict cust_level) {
 		this.cust_level = cust_level;
 	}
-	@Override
-	public String toString() {
-		return "Customer [cust_id=" + cust_id + ", cust_name=" + cust_name + ", cust_linkman=" + cust_linkman
-				+ ", cust_phone=" + cust_phone + ", cust_mobile=" + cust_mobile + ", cust_source=" + cust_source
-				+ ", cust_industry=" + cust_industry + ", cust_level=" + cust_level + ", linkMens=" + linkMens + "]";
+	
+	
+	public Set<SaleVisit> getSaleVisits() {
+		return saleVisits;
+	}
+	public void setSaleVisits(Set<SaleVisit> saleVisits) {
+		this.saleVisits = saleVisits;
 	}
 	
 	

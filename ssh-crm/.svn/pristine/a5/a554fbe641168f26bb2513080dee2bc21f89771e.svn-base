@@ -54,8 +54,6 @@ public class LinkManAction extends ActionSupport implements ModelDriven<LinkMan>
 	public String add() throws Exception {
 		System.out.println("进入LinkManAction_add");
 		
-		System.out.println("linkMan:"+linkMan);
-		
 		//1.调用Service
 		lms.save(linkMan);
 		
@@ -67,13 +65,10 @@ public class LinkManAction extends ActionSupport implements ModelDriven<LinkMan>
 	public String toEdit() throws Exception {
 		System.out.println("进入LinkManAction_toEdit");
 		
-		System.out.println(linkMan);
-		System.out.println(linkMan.getLkm_id());
 		//1.调用Service,查询LinkMan
 		LinkMan lm = lms.getById(linkMan.getLkm_id());
 		//2.将查询的LinkMan对象放入Reuqtes域,转发到添加页面（修改页面）
 		ActionContext.getContext().put("linkMan", lm);
-		//System.out.println("---------------------------");
 		
 		return "edit";
 	

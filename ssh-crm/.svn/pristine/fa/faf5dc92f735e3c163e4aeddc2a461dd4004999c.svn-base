@@ -64,18 +64,6 @@
 			<result name="list" >/jsp/linkman/list.jsp</result>
 			<result name="edit" >/jsp/linkman/add.jsp</result>
 		</action>
-		
-		<!-- 客户拜访记录Action配置 -->
-		<action name="SaleVisitAction_*" class="saleVisitAction" method="{1}">
-			<result name="toList" type="redirectAction" >
-				<param name="namespace">/</param>
-				<param name="actionName">SaleVisitAction_list</param>
-			</result>
-			<result name="error" >/jsp/error.jsp</result>
-			<result name="list" >/jsp/salevisit/list.jsp</result>
-			<result name="edit" >/jsp/salevisit/add.jsp</result>
-		</action>
-		
 	</package>
 
 
