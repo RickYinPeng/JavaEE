@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<!-- 这个项目默认包：包含系统的18个拦截器和自己定义的权限拦截器 -->
+	<package name="myDefault" extends="struts-default" abstract="true">
+		<!-- 定义拦截器和拦截器栈:权限相关的拦截器 -->
+		<interceptors>
+			<interceptor name="userLoginInter" class="yp.itcast.interceptor.UserLoginInterceptor"></interceptor>
+			<interceptor-stack name="MyStack">
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="userLoginInter"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="MyStack"></default-interceptor-ref>
+	</package>
+
+
+	<!-- 业务包继承自己定义的默认包(myDefault) -->
+	<package name="user" extends="myDefault" namespace="/user">
+		<global-results>
+			<result name="login">/login.jsp</result>
+		</global-results>
+		
+		
+		<!-- 用户模块的action -->
+		<action name="user_*" class="yp.itcast.web.UserAction" method="{1}">
+			<result name="success">/WEB-INF/jsp/userIndex.jsp</result>
+			<result name="error">/error.jsp</result>
+
+		</action> 
+		
+		<!-- 需要权限访问的页面 -->
+		<action name="*">
+			<result>/WEB-INF/jsp/{1}.jsp</result>
+		</action>
+		
+	</package>
+</struts>
