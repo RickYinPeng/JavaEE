@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="inter" extends="struts-default" namespace="/inter">
+		<!-- 定义拦截器 -->
+		<interceptors>
+			<interceptor name="inter1" class="yp.itcast.a_interceptor.MyInterceptor1"></interceptor>
+			<interceptor name="inter2" class="yp.itcast.a_interceptor.MyInterceptor2"></interceptor>
+			<!-- 定义拦截器栈 -->
+			<interceptor-stack name="interStack">
+				<interceptor-ref name="inter1"></interceptor-ref>
+				<interceptor-ref name="inter2"></interceptor-ref>
+			</interceptor-stack>
+			
+			<interceptor-stack name="myStack">
+				<interceptor-ref name="defaultStack"></interceptor-ref><!-- 引入默认的18个拦截器 -->
+				<interceptor-ref name="interStack"></interceptor-ref><!-- 引入自定义的2个拦截器 -->
+			</interceptor-stack>
+		</interceptors>
+		
+		<!-- 全局起作用的拦截器: 当前包的拦截器会把父包（struts-default）的拦截器覆盖掉,怎么办？ -->
+		<default-interceptor-ref name="myStack"></default-interceptor-ref>
+		
+		<action name="user_*" class="yp.itcast.a_interceptor.UserAction" method="{1}">
+			
+			<!-- 局部起作用的拦截器 -->
+			<!-- <interceptor-ref name="inter1"></interceptor-ref> -->
+			
+			<result>/index.jsp</result>	
+		</action>
+		
+		<action name="book_*" class="yp.itcast.a_interceptor.BookAction" method="{1}">
+			<param name="name">eric</param>
+			<result>/index.jsp</result>
+		</action>
+		
+	</package>
+</struts>
