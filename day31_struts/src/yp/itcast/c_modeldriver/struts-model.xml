@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="model" extends="struts-default" namespace="/model">
+		<action name="user_*" class="yp.itcast.c_modeldriver.UserAction" method="{1}">
+			<result>/index.jsp</result>
+			<!-- 以后记得要加上这个input视图，因为在发生struts的业务错误时（例如类型转换错误，文件上传错误。数据验证错误）交给input视图去处理 -->
+			<result name="input">/register.jsp</result>
+			<result name="ui">/ui.jsp</result>
+		</action>
+	</package>
+</struts>
