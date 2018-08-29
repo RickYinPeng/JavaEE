@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+
+<!-- 写sql语句 
+	namespace :命名空间 user.findUserById
+				     order.findUserById
+
+-->
+
+<mapper namespace="yp.itcast.mybatis.mapper.UserMapper">
+	<!-- 通过id查询一个用户 -->
+	<select id="findUserById" parameterType="Integer" resultType="User">
+		select * from user where id = #{v}
+	</select>
+	
+	<!-- 根据用户名称模糊查询用户列表
+			parameterType:参数类型：可以直接写String|Integer，因为在mybits中这些的路径已经封装好了
+			resultType：返回值类型，如果是一个返回值就写就行了，如果是List，那么写List泛型的返回值类型
+		
+		#{里面随便写}:select * from user where id = #{v}  占位符 ？== '五'
+		${只能写value}:select * from user where username like '%${}%';   字符串拼接 
+			
+	 -->
+	<select id="findUserByUsername" parameterType="String" resultType="yp.itcast.mybatis.pojo.User">
+		select * from user where username like "%"#{value}"%";
+	</select>
+	
+	<!-- 添加用户 -->
+	<insert id="insertUser" parameterType="yp.itcast.mybatis.pojo.User">
+		<selectKey keyProperty="id" resultType="Integer" order="AFTER">
+			select LAST_INSERT_ID()
+		</selectKey>
+		insert into user(username,birthday,address,sex) values(#{username},#{birthday},#{address},#{sex})
+	</insert>
+	
+	<!-- 更新用户 -->
+	<update id="UpdateUserById" parameterType="yp.itcast.mybatis.pojo.User">
+		update user 
+		set username=#{username},sex=#{sex},birthday=#{birthday},address=#{address}
+		where id = #{id}
+	</update>
+	
+	<!-- 删除用户 -->
+	<delete id="deleteUserById" parameterType="Integer">
+		delete from user where id = #{id}
+	</delete>
+	
+</mapper> 
+
+
+
+
+
