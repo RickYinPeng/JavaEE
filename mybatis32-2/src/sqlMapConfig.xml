@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration 
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+"mybatis-3-config.dtd">
+<configuration>
+	<properties resource="jdbc.properties" />
+	<!-- 别名配置 -->
+	<typeAliases>
+		<!-- 下面这种方式有弊端，如果你有一百张表就需要写一百行以下代码 -->
+		<!-- <typeAlias type="yp.itcast.mybatis.pojo.User" alias="User"/> -->
+		
+		<!-- 别名 包以及其子包下所有类  头字母大小写都行 -->		
+		<package name="yp.itcast.mybatis.pojo"/>  
+		<!-- 别在往上找了，有的人说在往上找yp.itcast.mybatis这样，这样就包含了其他不相关的包了 -->
+		<!-- <package name="yp.itcast.mybatis.query"/>   -->
+		
+	</typeAliases>
+	
+	<!-- 和spring整合后 environments配置将废除 -->
+	<environments default="development">
+		<environment id="development">
+			<!-- 使用jdbc事务管理 -->
+			<transactionManager type="JDBC" />
+			<!-- 数据库连接池 -->
+			<dataSource type="POOLED">
+				<property name="driver" value="${jdbc.driver}" />
+				<property name="url"
+					value="jdbc:mysql://localhost:3306/mybatis?characterEncoding=utf-8" />
+				<property name="username" value="root" />
+				<property name="password" value="root" />
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<!-- Mapper文件的位置 Mapper.xml 写Sql语句的文件的位置-->
+	<mappers>
+		
+		<!-- 这三个属性只用一个 -->
+		<!-- <mapper resource="sqlmap/User.xml" class="" url=""/> -->
+			 
+		<!-- 此种方法要求mapper接口名称和mapper映射文件名称相同，且放在同一个目录中。 -->
+		<!-- <mapper class="yp.itcast.mybatis.mapper.UserMapper" /> -->
+		
+		<!-- 需要填写绝对路径没啥意义（文档中直接没有） -->
+		<!-- <mapper url=""/> -->
+		
+		<package name="yp.itcast.mybatis.mapper"/>
+	
+	</mappers>
+</configuration>
+
+
+

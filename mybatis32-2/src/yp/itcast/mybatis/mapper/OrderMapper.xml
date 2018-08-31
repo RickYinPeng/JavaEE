@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+<mapper namespace="yp.itcast.mybatis.mapper.OrderMapper">
+	
+	<!-- <select id="selectOrdersList" resultType="Orders"> -->
+	
+	<resultMap type="Orders" id="orders">
+		<!-- 
+			association:一对一映射
+			collection:一对多映射
+			id:本身的id映射
+				column:元素是谁(指的就是数据库表，字段)
+				javaType:Java类型(指的就是property中的id是什么类型)
+				jdbcType:jdbc类型(指的就是数据库表中是什么类型)
+				property:pojo属性(POJO类型)
+			result：其他属性映射
+		 -->
+		 <!-- Mybatis很智能，所以不需要写javaType和jdbcType -->
+		<!-- <id column="id" property="id" javaType="Integer" jdbcType="int"/> -->
+		
+		<result column="user_id" property="userId"/>
+		
+		
+		<!-- 其他字段都一样，所以我在这注释了，不需要写 -->
+<!-- 		<result column="number" property="number"/>
+		<result column="createtime" property="createtime"/>
+		<result column="user_id" property="note"/> -->
+		
+	</resultMap>
+	
+	<select id="selectOrdersList" resultMap="orders">
+		select id,user_id,number,createtime,note from orders
+	</select>
+	
+	
+		<!-- 一对一关联查询,以订单为中心关联用户
+	public List<Orders> selectOrders();
+	 -->
+	 <resultMap type="Orders" id="order">
+	 	<id column="id" property="id"/>
+	 	<result column="user_id" property="userId"/>
+	 	<result column="number" property="number"/>
+	 	<result column="createtime" property="createtime"/>
+	 	<!-- 一对一映射标签 -->
+	 	<association  property="user" javaType="User">
+	 		<!-- 疑惑？username不是一样吗？为啥还要写，先写上，我们一会再不写试试 -->
+	 		<result column="username" property="username"/>
+	 	</association>
+	 </resultMap>
+	<!-- 一旦进行一对一，一对多关联时，返回值一定使用的是resultMap，因为对象不能直接去映射 -->
+	<select id="selectOrders" resultMap="order">
+		SELECT 
+			o.id,
+			o.user_id,
+			o.number,
+			o.createtime,
+			u.username 
+		FROM orders o LEFT JOIN USER u 
+		ON o.user_id=u.id;
+	</select>
+</mapper> 
+
+
+
+
+
