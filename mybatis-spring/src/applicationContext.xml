@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd 
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context.xsd 
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop.xsd 
+	http://www.springframework.org/schema/tx  
+	http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+	<!-- 加载配置文件 -->
+    <context:property-placeholder location="classpath:db.properties" />
+	<!-- dbcp数据库连接池 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driver}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<property name="maxActive" value="10" />
+		<!-- 最大空闲，就是别人都不用了，你得在池子里最少留5个 -->
+		<property name="maxIdle" value="5" />
+	</bean>
+	
+	<!-- Mybatis的工厂 -->
+	<bean name="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- 连接池 -->
+		<property name="dataSource" ref="dataSource"></property>
+		<!-- mybatis核心配置文件的位置 -->
+		<property name="configLocation" value="classpath:sqlMapConfig.xml"></property>
+	</bean>
+	
+	<!-- Dao原始Dao -->
+	<bean name="userDao" class="yp.itcast.mybatis.dao.impl.UserDaoImpl">
+		<property name="sqlSessionFactory" ref="sqlSessionFactoryBean" ></property>
+	</bean>
+	
+<!-- Mapper动态代理开发
+	<bean name="userMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="sqlSessionFactory" ref="sqlSessionFactoryBean" ></property>		
+		<property name="mapperInterface" value="yp.itcast.mybatis.mapper.UserMapper"></property>
+	</bean> -->
+	
+	<!-- Mapper动态代理开发（增强版） 扫描 
+		没有起name(id):
+	-->
+	<bean  class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<!-- 增强版扫描不需要你注入工厂它页知道工厂在哪里
+			工厂类是不是在spring容器中，我们前面不是写了吗（sqlSessionFactoryBean），
+			所以它自己取spring容器中去找它
+		 -->
+		<!-- 指定一个基本包（当然这个包里面放Mapper接口）
+			 还会自动扫描子包
+		 -->
+		<property name="basePackage" value="yp.itcast.mybatis.mapper"></property>
+	</bean>	
+	
+</beans>
+
