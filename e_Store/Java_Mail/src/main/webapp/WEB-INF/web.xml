@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         id="WebApp_ID" version="2.5">
+    <display-name>Java_Mail</display-name>
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+  <display-name>Archetype Created Web Application</display-name>
+    <servlet>
+        <servlet-name>DisplayHead</servlet-name>
+        <servlet-class>yp.Mail.DisplayHead</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DisplayContent</servlet-name>
+        <servlet-class>yp.Mail.DisplayContent</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>HandleAttact</servlet-name>
+        <servlet-class>yp.Mail.HandleAttact</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>HandleAttact</servlet-name>
+        <url-pattern>/HandleAttact</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DisplayHead</servlet-name>
+        <url-pattern>/DisplayHead</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DisplayContent</servlet-name>
+        <url-pattern>/DisplayContent</url-pattern>
+    </servlet-mapping>
+</web-app>

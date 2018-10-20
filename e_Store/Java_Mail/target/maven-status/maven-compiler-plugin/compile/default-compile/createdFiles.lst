@@ -1,0 +1,5 @@
+yp\Mail\POP3Help.class
+yp\Mail\POP3ReceiveMailTest.class
+yp\Mail\HandleAttact.class
+yp\Mail\DisplayContent.class
+yp\Mail\DisplayHead.class

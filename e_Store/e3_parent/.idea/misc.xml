@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/../e3_content_service" />
+    <file type="web" url="file://$PROJECT_DIR$/../e3_manager_service" />
+    <file type="web" url="file://$PROJECT_DIR$/../e3_manager_web" />
+    <file type="web" url="file://$PROJECT_DIR$/../e3_portal_web" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/../e3_common/pom.xml" />
+        <option value="$PROJECT_DIR$/../e3_manager/pom.xml" />
+        <option value="$PROJECT_DIR$/../e3_manager_web/pom.xml" />
+        <option value="$PROJECT_DIR$/../e3_portal_web/pom.xml" />
+        <option value="$PROJECT_DIR$/../e3_content/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectResources">
+    <resource url="http://code.alibabatech.com/schema/dubbo" location="F:/视频教学/黑马32/【阶段16】宜立方商城项目/商城_day01/e3商城_day01/黑马32期/01.教案-3.0/01.参考资料/dubbo/dubbo.xsd" />
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+  <component name="SvnBranchConfigurationManager">
+    <option name="myConfigurationMap">
+      <map>
+        <entry key="$PROJECT_DIR$">
+          <value>
+            <SvnBranchConfiguration>
+              <option name="branchUrls">
+                <list>
+                  <option value="https://desktop-7hl4l4b:8443/svn/e3-mall/branches" />
+                  <option value="https://desktop-7hl4l4b:8443/svn/e3-mall/tags" />
+                </list>
+              </option>
+              <option name="trunkUrl" value="https://desktop-7hl4l4b:8443/svn/e3-mall/trunk" />
+            </SvnBranchConfiguration>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="mySupportsUserInfoFilter" value="true" />
+  </component>
+</project>
